@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Custom width for the off-canvas sidebar */
+        .offcanvas-sidebar {
+            width: 250px;
+        }
+        /* Ensure the main content occupies available space */
+        .content-area {
+            flex-grow: 1;
+        }
+    </style>
+</head>
+<body>
+<header style="display: flex; justify-content: space-between; align-items: center; background-color: #e8f4f8; padding: 1rem 2rem; border-bottom: 2px solid #ccc;">
+    <h1 style="margin: 0; font-size: 2rem; font-weight: bold; color: #333;">Patient Management</h1>
+    <span style="font-size: 1.25rem; color: #555;" th:text="'Welcome, ' + ${patientName} + '!'">Welcome, Patient!</span>
+</header>
+
+
+<!-- Navbar with Hamburger Toggler -->
+<nav class="navbar navbar-light bg-light">
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidebarMenu"
+            aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+</nav>
+
+<div class="d-flex">
+    <!-- Collapsible Sidebar -->
+    <div id="sidebarMenu" class="collapse offcanvas-sidebar bg-light">
+        <div class="list-group list-group-flush">
+            <a th:href="@{/dashboard}" class="list-group-item list-group-item-action">Dashboard</a>
+            <a th:href="@{/appointments}" class="list-group-item list-group-item-action">View Appointments</a>
+            <a th:href="@{/appointments/booked}" class="list-group-item list-group-item-action">My Booked Appointments</a>
+            <a th:href="@{/medications}" class="list-group-item list-group-item-action">Medication Management</a>
+            <a th:href="@{/logout}" class="list-group-item list-group-item-action">Logout</a>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="content-area p-3">
+        <h2>Dashboard</h2>
+        <p>This is your dashboard content where you can manage your appointments and profile.</p>
+        <!-- Additional dashboard content goes here -->
+    </div>
+</div>
+
+<!-- Bootstrap and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

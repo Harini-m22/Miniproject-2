@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Appointment</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<header style="display: flex; justify-content: space-between; align-items: center; background-color: #e8f4f8; padding: 1rem 2rem; border-bottom: 2px solid #ccc;">
+  <h1 style="margin: 0; font-size: 2rem; font-weight: bold; color: #333;">Patient Management</h1>
+
+</header>
+<div class="container mt-5">
+  <h2>Edit Appointment</h2>
+
+  <form th:action="@{'/appointments/edit/' + ${appointment.id}}" th:object="${appointment}" method="post">
+    <div class="form-group">
+      <label for="doctorName">Doctor Name</label>
+      <input type="text" th:field="*{doctorName}" class="form-control" id="doctorName" placeholder="Enter doctor name" required>
+    </div>
+
+    <div class="form-group">
+      <label for="doctorDetails">Doctor Details</label>
+      <textarea th:field="*{doctorDetails}" class="form-control" id="doctorDetails" placeholder="Enter doctor details" required></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="appointmentTime">Appointment Time</label>
+      <input type="datetime-local" th:field="*{appointmentTime}" class="form-control" id="appointmentTime" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Update Appointment</button>
+    <a href="/appointments/booked" class="btn btn-secondary">Cancel</a>
+  </form>
+
+  <!-- Display error messages if any -->
+  <div th:if="${errorMessage}" class="alert alert-danger mt-3" th:text="${errorMessage}"></div>
+</div>
+</body>
+</html>

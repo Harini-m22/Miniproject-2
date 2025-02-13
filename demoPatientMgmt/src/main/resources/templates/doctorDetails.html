@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Doctor Details</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<header style="display: flex; justify-content: space-between; align-items: center; background-color: #e8f4f8; padding: 1rem 2rem; border-bottom: 2px solid #ccc;">
+  <h1 style="margin: 0; font-size: 2rem; font-weight: bold; color: #333;">Patient Management</h1>
+
+</header>
+<div class="container mt-5">
+  <h2>Doctor Details: <span th:text="${doctorName}"></span></h2>
+  <h3>Schedule</h3>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Appointment Time</th>
+      <th>Status</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="appointment : ${appointments}">
+      <td th:text="${#temporals.format(appointment.appointmentTime, 'yyyy-MM-dd HH:mm')}"></td>
+      <td th:text="${appointment.booked ? 'Booked' : 'Available'}"></td>
+    </tr>
+    </tbody>
+  </table>
+  <a href="/appointments" class="btn btn-secondary">Back to Appointments</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Available Appointments</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<header style="display: flex; justify-content: space-between; align-items: center; background-color: #e8f4f8; padding: 1rem 2rem; border-bottom: 2px solid #ccc;">
+  <h1 style="margin: 0; font-size: 2rem; font-weight: bold; color: #333;">Patient Management</h1>
+
+</header>
+<div class="container mt-5">
+  <!-- Back to Dashboard Button -->
+  <div class="mb-3">
+    <a href="/dashboard" class="btn btn-secondary">Back to Dashboard</a>
+  </div>
+
+  <h2>Available Appointments</h2>
+
+  <!-- Success and error messages -->
+  <div th:if="${successMessage}" class="alert alert-success" th:text="${successMessage}"></div>
+  <div th:if="${errorMessage}" class="alert alert-danger" th:text="${errorMessage}"></div>
+
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Doctor</th>
+      <th>Appointment Time</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="appointment : ${appointments}">
+      <td>
+        <!-- Link to view doctor details -->
+        <a th:href="@{'/doctor/' + ${appointment.doctorName}}"
+           th:text="${appointment.doctorName}">Doctor Name</a>
+      </td>
+      <td th:text="${#temporals.format(appointment.appointmentTime, 'yyyy-MM-dd HH:mm')}"></td>
+      <td>
+        <!-- Book Appointment button -->
+        <form th:action="@{'/appointments/book/' + ${appointment.id}}" method="post">
+          <button type="submit" class="btn btn-primary">Book Appointment</button>
+        </form>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

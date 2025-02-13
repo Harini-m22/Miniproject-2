@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Medication</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<header style="display: flex; justify-content: space-between; align-items: center; background-color: #e8f4f8; padding: 1rem 2rem; border-bottom: 2px solid #ccc;">
+  <h1 style="margin: 0; font-size: 2rem; font-weight: bold; color: #333;">Patient Management</h1>
+
+</header>
+<div class="container mt-5">
+  <h2>Edit Medication</h2>
+  <form th:action="@{'/medications/edit/' + ${medication.id}}" th:object="${medication}" method="post">
+    <div class="form-group">
+      <label for="name">Medication Name</label>
+      <input type="text" th:field="*{name}" class="form-control" id="name" placeholder="Enter medication name" required>
+      <div class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+    </div>
+
+    <div class="form-group">
+      <label for="dosage">Dosage</label>
+      <input type="text" th:field="*{dosage}" class="form-control" id="dosage" placeholder="Enter dosage">
+      <div class="text-danger" th:if="${#fields.hasErrors('dosage')}" th:errors="*{dosage}"></div>
+    </div>
+
+    <div class="form-group">
+      <label for="instructions">Instructions</label>
+      <textarea th:field="*{instructions}" class="form-control" id="instructions" placeholder="Enter instructions"></textarea>
+      <div class="text-danger" th:if="${#fields.hasErrors('instructions')}" th:errors="*{instructions}"></div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Update Medication</button>
+    <a th:href="@{/medications}" class="btn btn-secondary">Cancel</a>
+  </form>
+</div>
+</body>
+</html>

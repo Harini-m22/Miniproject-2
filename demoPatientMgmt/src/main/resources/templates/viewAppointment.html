@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>View Appointment</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<header style="display: flex; justify-content: space-between; align-items: center; background-color: #e8f4f8; padding: 1rem 2rem; border-bottom: 2px solid #ccc;">
+  <h1 style="margin: 0; font-size: 2rem; font-weight: bold; color: #333;">Patient Management</h1>
+
+</header>
+<div class="container mt-5">
+  <h2>Appointment Details</h2>
+
+  <div class="card">
+    <div class="card-body">
+      <p><strong>ID:</strong> <span th:text="${appointment.id}"></span></p>
+      <p><strong>Doctor:</strong> <span th:text="${appointment.doctorName}"></span></p>
+      <p><strong>Doctor Details:</strong> <span th:text="${appointment.doctorDetails}"></span></p>
+      <p><strong>Appointment Time:</strong> <span th:text="${#temporals.format(appointment.appointmentTime, 'yyyy-MM-dd HH:mm')}"></span></p>
+      <p><strong>Status:</strong> <span th:text="${appointment.booked ? 'Booked' : 'Available'}"></span></p>
+    </div>
+  </div>
+
+  <a href="/appointments/booked" class="btn btn-secondary mt-3">Back to Booked Appointments</a>
+</div>
+</body>
+</html>
